@@ -14,12 +14,15 @@ namespace StoreUI
             Console.WriteLine("Please Select an Option:");
             Console.WriteLine("[0] - Customer Options");
             Console.WriteLine("[1] - Manager Options");
+            Console.WriteLine("[2] - Exit Program");
             Console.WriteLine("Select Option: ");
             string option = Console.ReadLine();
             switch(option)
             {
                 case "0":
-                    //Go To Customer Menu
+                    CustMenu customerMenu = new CustMenu();
+                    customerMenu.Start();
+                    menuRun = false;
                     break;
                 case "1":
                     //Go to Manager Menu
