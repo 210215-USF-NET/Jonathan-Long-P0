@@ -42,5 +42,10 @@ namespace StoreModels
             get {return locationName;}
             set{locationName = value;}
         }
+        //Methods
+        public override string ToString()
+        {
+            return $"Store Information: \n\t Store Name: {this.LocationName} \n\t State: {this.State} \n\t Address: {this.Address}";
+        }
     }
 }
