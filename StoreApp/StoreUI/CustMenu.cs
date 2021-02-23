@@ -1,5 +1,6 @@
 using System;
 using StoreModels;
+using StoreBL;
 namespace StoreUI
 {
     /// <summary>
@@ -7,6 +8,11 @@ namespace StoreUI
     /// </summary>
     public class CustMenu : IMenu
     {
+        private ICustomerBL _customerBL;
+        public CustMenu(ICustomerBL customerBL)
+        {
+            _customerBL = customerBL;
+        }
         public void Start()
         {
             bool menuRun = true;
@@ -26,6 +32,9 @@ namespace StoreUI
                 case "0":
                     CreateCustomer();
                     break;
+                case "1":
+                    GetCustomers();
+                    break;
             }
             } while(menuRun);
         }
@@ -38,9 +47,15 @@ namespace StoreUI
             Console.WriteLine("Enter customer phone number: ");
             string phoneNumber = Console.ReadLine();
             Customer newCustomer = new Customer(fName, lName, phoneNumber);
-            Console.WriteLine(newCustomer.FirstName);
-            Console.WriteLine(newCustomer.LastName);
-            Console.WriteLine(newCustomer.PhoneNumber);
+            _customerBL.AddCustomer(newCustomer); //BL add customer
+
+        }
+        public void GetCustomers()
+        {
+            foreach(var item in _customerBL.GetCustomers())
+            {
+                Console.WriteLine(item.ToString());
+            }
         }
     }
 }

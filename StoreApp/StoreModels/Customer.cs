@@ -47,5 +47,9 @@ namespace StoreModels
         }
 
         //Member Methods 
+        public override string ToString()
+        {
+            return $"Customer Details: \n\t First Name: {this.FirstName} \n\t Last Name: {this.LastName} \n\t Phone Number: {this.PhoneNumber}";
+        }
     }
 }

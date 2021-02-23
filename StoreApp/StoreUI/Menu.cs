@@ -1,8 +1,18 @@
 using System;
+using StoreModels;
+using StoreBL;
 namespace StoreUI
 {
+    /// <summary>
+    /// This is the starting menu for the application. Lets you choose either the customer or manager menu.
+    /// </summary>
     public class Menu : IMenu
     {
+        private ICustomerBL _customerBL;
+        public Menu(ICustomerBL customerBL)
+        {
+            _customerBL = customerBL;
+        }
         public void Start()
         {
             bool menuRun = true;
@@ -20,7 +30,7 @@ namespace StoreUI
             switch(option)
             {
                 case "0":
-                    CustMenu customerMenu = new CustMenu();
+                    CustMenu customerMenu = new CustMenu(_customerBL);
                     customerMenu.Start();
                     menuRun = false;
                     break;
