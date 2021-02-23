@@ -23,7 +23,7 @@ namespace StoreUI
             Console.WriteLine("--------------");
             Console.WriteLine("Please Select an Option:");
             Console.WriteLine("[0] - New Customer");
-            Console.WriteLine("[1] - Place Order");
+            Console.WriteLine("[1] - Search Existing Customers");
             Console.WriteLine("[2] - View Order History");
             Console.WriteLine("Option:");
             string option = Console.ReadLine();
@@ -52,9 +52,23 @@ namespace StoreUI
         }
         public void GetCustomers()
         {
+            Console.WriteLine("Customer First Name: ");
+            string firstName = Console.ReadLine();
+            Console.WriteLine("Customer Last Name: ");
+            string lastName = Console.ReadLine();
+            int check = 0;
             foreach(var item in _customerBL.GetCustomers())
             {
-                Console.WriteLine(item.ToString());
+                if(item.FirstName == firstName && item.LastName == lastName)
+                {
+                    Console.WriteLine(item.ToString());
+                    check++;
+                }
+                
+            }
+            if(check == 0)
+            {
+                Console.WriteLine("No matching customer found");
             }
         }
     }
