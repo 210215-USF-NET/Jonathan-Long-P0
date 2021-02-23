@@ -11,15 +11,17 @@ namespace StoreModels
         private int custID;
         private string firstName;
         private string lastName;
-        private int phoneNumber;
+        private string phoneNumber;
+        public static int numberOfCustomers = 0;
 
         //Constructor(s)
-        public Customer(int custID, string firstName, string lastName, int phoneNumber)
+        public Customer(string firstName, string lastName, string phoneNumber)
         {
-            this.custID = custID;
+            this.custID = numberOfCustomers;
             this.firstName = firstName;
             this.lastName = lastName;
             this.phoneNumber = phoneNumber;
+            numberOfCustomers++;
         }
 
         //Properties
@@ -38,7 +40,7 @@ namespace StoreModels
             get {return lastName;}
             set {lastName = value;}
         }
-        public int PhoneNumber
+        public string PhoneNumber
         {
             get {return phoneNumber;}
             set {phoneNumber = value;}
