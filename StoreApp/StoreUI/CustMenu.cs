@@ -10,10 +10,12 @@ namespace StoreUI
     {
         private ICustomerBL _customerBL;
         private ILocationBL _locationBL;
-        public CustMenu(ICustomerBL customerBL,ILocationBL locationBL)
+        private IProductBL _productBL;
+        public CustMenu(ICustomerBL customerBL,ILocationBL locationBL,IProductBL productBL)
         {
             _customerBL = customerBL;
             _locationBL = locationBL;
+            _productBL = productBL;
         }
         public void Start()
         {
@@ -78,10 +80,12 @@ namespace StoreUI
         }
         public void getStores()
         {
-            foreach(var item in _locationBL.GetLocations())
-            {
-                Console.WriteLine(item.ToString());
-            }
+            Location selectedLocation = _locationBL.locationSelection();
+            Console.WriteLine(selectedLocation.LocationName + " has been selected!");
+            //foreach(var item in _locationBL.GetLocations())
+           // {
+               // Console.WriteLine(item.ToString());
+           // }
             
 
         }

@@ -10,10 +10,13 @@ namespace StoreUI
     {
         private ICustomerBL _customerBL;
         private ILocationBL _locationBL;
-        public Menu(ICustomerBL customerBL, ILocationBL locationBL)
+        private IProductBL _productBL;
+        public Menu(ICustomerBL customerBL, ILocationBL locationBL, IProductBL productBL)
         {
             _customerBL = customerBL;
             _locationBL = locationBL;
+            _productBL = productBL;
+
         }
         public void Start()
         {
@@ -24,15 +27,15 @@ namespace StoreUI
             Console.WriteLine("Welcome to the Ski Store!");
             Console.WriteLine("-------------------------");
             Console.WriteLine("Please Select an Option:");
-            Console.WriteLine("[0] - Customer Options");
-            Console.WriteLine("[1] - Manager Options");
+            Console.WriteLine("[0] - Customer Menu");
+            Console.WriteLine("[1] - Manager Menu");
             Console.WriteLine("[2] - Exit Program");
             Console.WriteLine("Select Option: ");
             string option = Console.ReadLine();
             switch(option)
             {
                 case "0":
-                    CustMenu customerMenu = new CustMenu(_customerBL, _locationBL);
+                    CustMenu customerMenu = new CustMenu(_customerBL, _locationBL, _productBL);
                     customerMenu.Start();
                     menuRun = false;
                     break;

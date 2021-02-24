@@ -8,7 +8,8 @@ namespace StoreUI
     {
         static void Main(string[] args)
         {
-            Menu menu = new Menu(new CustomerBL(new CustomerRepoSC()), new LocationBL(new LocationStorageRepoSC()));
+            Menu menu = new Menu(new CustomerBL(new CustomerRepoSC()), new LocationBL(new LocationStorageRepoSC()), 
+            new ProductBL(new ProductRepoSC()));
             menu.Start();
         }
     }

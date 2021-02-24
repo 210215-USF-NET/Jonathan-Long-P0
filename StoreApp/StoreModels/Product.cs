@@ -11,16 +11,14 @@ namespace StoreModels
         private string productName;
         private double price;
         private string description;
-        private Location location;
 
         //Constructor(s)
-        public Product(int productID, string productName, double price, string description, Location location)
+        public Product(int productID, string productName, double price, string description)
         {
             this.productID = productID;
             this.productName = productName;
             this.price = price;
             this.description = description;
-            this.location = location;
         }
         //Properties
         public int ProductID
@@ -42,11 +40,6 @@ namespace StoreModels
         {
             get {return description;}
             set {description = value;}
-        }
-        public Location Location
-        {
-            get {return location;}
-            set {location = value;}
         }
 
     }
