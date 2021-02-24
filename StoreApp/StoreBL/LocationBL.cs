@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using StoreModels;
 using StoreDL;
+using System;
 namespace StoreBL
 {
     /// <summary>
@@ -13,18 +14,26 @@ namespace StoreBL
         {
             _repo = repo;
         }
+        
         public List<Location> GetLocations()
         {
             return _repo.GetLocations();
-
         }
 
-        public Location locationSelection(int choice)
+        public Location locationSelection()
         {
             Location selectedLocation = null;
             bool selected = false;
             while(!selected)
             {
+                Console.WriteLine("Store Locations");
+                Console.WriteLine("---------------");
+                foreach(var item in _repo.GetLocations())
+                {
+                    Console.WriteLine(item.ToString());
+                }
+                Console.WriteLine("Select Store Code:");
+                int choice = int.Parse(Console.ReadLine());     
                 foreach(var item in _repo.GetLocations())
                 {
                     if(item.LocationID == choice)

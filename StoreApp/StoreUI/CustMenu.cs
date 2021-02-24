@@ -9,9 +9,11 @@ namespace StoreUI
     public class CustMenu : IMenu
     {
         private ICustomerBL _customerBL;
-        public CustMenu(ICustomerBL customerBL)
+        private ILocationBL _locationBL;
+        public CustMenu(ICustomerBL customerBL,ILocationBL locationBL)
         {
             _customerBL = customerBL;
+            _locationBL = locationBL;
         }
         public void Start()
         {
@@ -24,7 +26,7 @@ namespace StoreUI
             Console.WriteLine("Please Select an Option:");
             Console.WriteLine("[0] - New Customer");
             Console.WriteLine("[1] - Search Existing Customers");
-            Console.WriteLine("[2] - View Order History");
+            Console.WriteLine("[2] - Select a Store Location");
             Console.WriteLine("Option:");
             string option = Console.ReadLine();
             switch(option)
@@ -34,6 +36,9 @@ namespace StoreUI
                     break;
                 case "1":
                     GetCustomers();
+                    break;
+                case "2":
+                    getStores();
                     break;
             }
             } while(menuRun);
@@ -70,6 +75,15 @@ namespace StoreUI
             {
                 Console.WriteLine("No matching customer found");
             }
+        }
+        public void getStores()
+        {
+            foreach(var item in _locationBL.GetLocations())
+            {
+                Console.WriteLine(item.ToString());
+            }
+            
+
         }
     }
 }

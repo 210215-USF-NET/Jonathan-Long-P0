@@ -5,6 +5,6 @@ namespace StoreBL
     public interface ILocationBL
     {
          List<Location> GetLocations();
-         Location locationSelection(int choice);
+         Location locationSelection();
     }
 }
