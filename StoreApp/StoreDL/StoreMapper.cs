@@ -22,7 +22,9 @@ namespace StoreDL
 
         public Model.Location ParseLocation(Entity.Location location)
         {
-            return new Model.Location(location.Address, location.State, location.LocationName);
+            Model.Location newLocation = new Model.Location(location.Address, location.State, location.LocationName);
+            newLocation.LocationID = location.LocationId;
+            return newLocation;
         }
     }
 }

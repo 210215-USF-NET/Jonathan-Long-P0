@@ -16,7 +16,7 @@ namespace StoreDL
         }
         public List<Model.Location> GetLocations()
         {
-            return _context.Locations.Select(x => _mapper.ParseLocation(x)).ToList();
+            return _context.Locations.AsNoTracking().Select(x => _mapper.ParseLocation(x)).ToList();
         }
     }
 }

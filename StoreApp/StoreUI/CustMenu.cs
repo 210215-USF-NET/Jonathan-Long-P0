@@ -29,6 +29,7 @@ namespace StoreUI
             Console.WriteLine("[0] - New Customer");
             Console.WriteLine("[1] - Search Existing Customers");
             Console.WriteLine("[2] - Select a Store Location");
+            Console.WriteLine("[3] - Back to main menu");
             Console.WriteLine("Option:");
             string option = Console.ReadLine();
             switch(option)
@@ -40,7 +41,10 @@ namespace StoreUI
                     GetCustomers();
                     break;
                 case "2":
-                    getStores();
+                    GetStores();
+                    break;
+                case "3":
+                    BackToMainMenu();
                     break;
             }
             } while(menuRun);
@@ -78,16 +82,19 @@ namespace StoreUI
                 Console.WriteLine("No matching customer found");
             }
         }
-        public void getStores()
+        public void GetStores()
         {
-            Location selectedLocation = _locationBL.locationSelection();
-            Console.WriteLine(selectedLocation.LocationName + " has been selected!");
-            //foreach(var item in _locationBL.GetLocations())
-           // {
-               // Console.WriteLine(item.ToString());
-           // }
-            
-
+            foreach(var item in _locationBL.GetLocations())
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadLine();
+        }
+        public void BackToMainMenu()
+        {
+            Menu menu = new Menu(_customerBL, _locationBL, _productBL);
+            menu.Start();
         }
     }
 }

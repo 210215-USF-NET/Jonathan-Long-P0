@@ -16,7 +16,6 @@ namespace StoreModels
         //Constructor(s)
         public Location(string address, string state, string locationName)
         {
-            this.locationID = numOfLocations;
             this.address = address;
             this.state = state;
             this.locationName = locationName;

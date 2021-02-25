@@ -19,37 +19,6 @@ namespace StoreBL
         {
             return _repo.GetLocations();
         }
-
-        public Location locationSelection()
-        {
-            Location selectedLocation = null;
-            bool selected = false;
-            while(!selected)
-            {
-                Console.WriteLine("Store Locations");
-                Console.WriteLine("---------------");
-                foreach(var item in _repo.GetLocations())
-                {
-                    Console.WriteLine(item.ToString());
-                }
-                Console.WriteLine("Select Store Code:");
-                int choice = int.Parse(Console.ReadLine());     
-                foreach(var item in _repo.GetLocations())
-                {
-                    if(item.LocationID == choice)
-                    {
-                        selectedLocation = item;
-                        selected = true;
-                    }
-                }
-                if(!selected)
-                {
-                    Console.WriteLine("Store code incorrect, please try again");
-                }
-            }
-            return selectedLocation;
-        }
-
         
     }
 }
