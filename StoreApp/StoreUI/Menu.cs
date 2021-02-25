@@ -36,20 +36,25 @@ namespace StoreUI
             {
                 case "0":
                     CustMenu customerMenu = new CustMenu(_customerBL, _locationBL, _productBL);
-                    customerMenu.Start();
                     menuRun = false;
+                    customerMenu.Start();
                     break;
                 case "1":
                     //Go to Manager Menu
                     break;
                 case "2":
                     menuRun = false;
+                    Exit();
                     break;
                 default:
                     Console.WriteLine("Invalid menu option. Please try again!");
                     break;
             }
             } while (menuRun);
+        }
+        public void Exit()
+        {
+            Console.WriteLine("Thank you for using the Ski Shop!");
         }
     }
 }

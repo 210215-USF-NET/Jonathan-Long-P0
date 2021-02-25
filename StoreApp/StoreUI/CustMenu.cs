@@ -45,6 +45,7 @@ namespace StoreUI
                     break;
                 case "3":
                     BackToMainMenu();
+                    menuRun = false;
                     break;
             }
             } while(menuRun);
