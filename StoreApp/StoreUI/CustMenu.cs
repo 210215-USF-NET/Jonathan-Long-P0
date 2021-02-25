@@ -89,8 +89,16 @@ namespace StoreUI
             {
                 Console.WriteLine(item.ToString());
             }
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadLine();
+            Console.WriteLine("Enter a Store Code to Shop:");
+            int storeCode = int.Parse(Console.ReadLine());
+            Location selectedLocation = _locationBL.GetSpecificLocation(storeCode);
+            if(selectedLocation == null)
+            {
+                Console.WriteLine("Error - store code not valid");
+            } else
+            {
+                Console.WriteLine($"Entered Store {selectedLocation.LocationName}");
+            }
         }
         public void BackToMainMenu()
         {

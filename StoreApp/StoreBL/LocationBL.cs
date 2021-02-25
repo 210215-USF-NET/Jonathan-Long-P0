@@ -19,6 +19,10 @@ namespace StoreBL
         {
             return _repo.GetLocations();
         }
-        
+
+        public Location GetSpecificLocation(int storeCode)
+        {
+            return _repo.GetSpecificLocation(storeCode);
+        }
     }
 }

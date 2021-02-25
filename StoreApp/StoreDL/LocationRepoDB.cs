@@ -3,6 +3,8 @@ using Entity = StoreDL.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using StoreModels;
+
 namespace StoreDL
 {
     public class LocationRepoDB : ILocationRepository
@@ -17,6 +19,11 @@ namespace StoreDL
         public List<Model.Location> GetLocations()
         {
             return _context.Locations.AsNoTracking().Select(x => _mapper.ParseLocation(x)).ToList();
+        }
+
+        public Location GetSpecificLocation(int storeCode)
+        {
+            return _context.Locations.AsNoTracking().Select(x => _mapper.ParseLocation(x)).ToList().FirstOrDefault(x => x.LocationID == storeCode);
         }
     }
 }

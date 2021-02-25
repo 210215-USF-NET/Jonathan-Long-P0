@@ -6,5 +6,7 @@ namespace StoreDL
     {
          List<Location> GetLocations();
 
+         Location GetSpecificLocation(int storeCode);
+
     }
 }
