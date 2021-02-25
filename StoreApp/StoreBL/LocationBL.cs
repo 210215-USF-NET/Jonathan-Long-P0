@@ -42,6 +42,10 @@ namespace StoreBL
                         selected = true;
                     }
                 }
+                if(!selected)
+                {
+                    Console.WriteLine("Store code incorrect, please try again");
+                }
             }
             return selectedLocation;
         }

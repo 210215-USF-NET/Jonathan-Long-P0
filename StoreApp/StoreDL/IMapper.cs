@@ -9,5 +9,6 @@ namespace StoreDL
     {
          Model.Customer ParseCustomer(Entity.Customer customer);
          Entity.Customer ParseCustomer(Model.Customer customer);
+         Model.Location ParseLocation(Entity.Location location);
     }
 }

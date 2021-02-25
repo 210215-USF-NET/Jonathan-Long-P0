@@ -19,5 +19,10 @@ namespace StoreDL
                 PhoneNumber = customer.PhoneNumber
             };
         }
+
+        public Model.Location ParseLocation(Entity.Location location)
+        {
+            return new Model.Location(location.Address, location.State, location.LocationName);
+        }
     }
 }

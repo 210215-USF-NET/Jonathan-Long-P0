@@ -11,14 +11,16 @@ namespace StoreModels
         private string address;
         private string state;
         private string locationName;
+        public static int numOfLocations = 0;
 
         //Constructor(s)
-        public Location(int locationID, string address, string state, string locationName)
+        public Location(string address, string state, string locationName)
         {
-            this.locationID = locationID;
+            this.locationID = numOfLocations;
             this.address = address;
             this.state = state;
             this.locationName = locationName;
+            numOfLocations++;
         }
 
         //Properties
@@ -45,7 +47,7 @@ namespace StoreModels
         //Methods
         public override string ToString()
         {
-            return $"Store Information: \n\t Store Name: {this.LocationName} \n\t State: {this.State} \n\t Address: {this.Address}";
+            return $"Store Information: \n\t Store Code: {this.LocationID} \n\t Store Name: {this.LocationName} \n\t State: {this.State} \n\t Address: {this.Address}";
         }
     }
 }

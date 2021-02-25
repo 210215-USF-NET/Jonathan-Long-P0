@@ -23,7 +23,7 @@ namespace StoreUI
 
             using var context = new StoreDBContext(options);
 
-            Menu menu = new Menu(new CustomerBL(new CustomerRepoDB(context, new StoreMapper())), new LocationBL(new LocationStorageRepoSC()), 
+            Menu menu = new Menu(new CustomerBL(new CustomerRepoDB(context, new StoreMapper())), new LocationBL(new LocationRepoDB(context, new StoreMapper())), 
             new ProductBL(new ProductRepoSC()));
             menu.Start();
         }
