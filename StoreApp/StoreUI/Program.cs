@@ -2,13 +2,28 @@
 using StoreModels;
 using StoreBL;
 using StoreDL;
+using StoreDL.Entities;
+using Microsoft.Extensions.Configuration;
+using System.IO;
+using Microsoft.EntityFrameworkCore;
 namespace StoreUI
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Menu menu = new Menu(new CustomerBL(new CustomerRepoSC()), new LocationBL(new LocationStorageRepoSC()), 
+            //Setting up DB connection
+            var configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json")
+            .Build();
+
+            string connectionString = configuration.GetConnectionString("StoreDB");
+            DbContextOptions<StoreDBContext> options = new DbContextOptionsBuilder<StoreDBContext>().UseSqlServer(connectionString).Options;
+
+            using var context = new StoreDBContext(options);
+
+            Menu menu = new Menu(new CustomerBL(new CustomerRepoDB(context, new StoreMapper())), new LocationBL(new LocationStorageRepoSC()), 
             new ProductBL(new ProductRepoSC()));
             menu.Start();
         }

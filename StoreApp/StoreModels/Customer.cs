@@ -17,7 +17,7 @@ namespace StoreModels
         //Constructor(s)
         public Customer(string firstName, string lastName, string phoneNumber)
         {
-            this.custID = numberOfCustomers;
+            custID = numberOfCustomers;
             this.firstName = firstName;
             this.lastName = lastName;
             this.phoneNumber = phoneNumber;
