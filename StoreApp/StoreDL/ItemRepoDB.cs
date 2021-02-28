@@ -3,7 +3,6 @@ using Model = StoreModels;
 using Entity = StoreDL.Entities;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using StoreModels;
 
 namespace StoreDL
 {

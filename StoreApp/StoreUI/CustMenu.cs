@@ -105,6 +105,30 @@ namespace StoreUI
                     Console.WriteLine(item.Product.ToString());
                     Console.WriteLine(item.ToString());
                 }
+                Order newOrder = new Order(); //create new order object
+                bool shop = true;
+                do
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Select an item code to add to your order");
+                    Console.WriteLine("Type \'Cancel\' to cancel order or \'Finish\' to complete your order");
+                    Console.WriteLine("Selection:");
+                    string option = Console.ReadLine();
+                    if(option == "Cancel" || option == "cancel")
+                    {
+                        shop = false;
+                    }
+                    else if(option == "Finish" || option == "finish")
+                    {
+                        //Checkout logic...
+                    }
+                    else
+                    {
+                        //Need logic to make sure productID exists 
+                        Console.WriteLine("Enter quantity:");
+                        int quantity = int.Parse(Console.ReadLine());
+                    }
+                }while (shop);
 
             }
         }

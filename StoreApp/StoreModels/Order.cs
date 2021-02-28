@@ -14,6 +14,10 @@ namespace StoreModels
         private Location location;
 
         //Constructor(s)
+        public Order()
+        {
+            this.date = DateTime.Now;
+        }
         
 
         //Properties
