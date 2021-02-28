@@ -32,7 +32,7 @@ namespace StoreDL.Entities
             modelBuilder.Entity<Customer>(entity =>
             {
                 entity.HasKey(e => e.CustId)
-                    .HasName("PK__Customer__049E3A89FCE6FE79");
+                    .HasName("PK__Customer__049E3A89E27CE3C3");
 
                 entity.ToTable("Customer");
 
@@ -50,7 +50,7 @@ namespace StoreDL.Entities
 
                 entity.Property(e => e.PhoneNumber)
                     .IsRequired()
-                    .HasMaxLength(10)
+                    .HasMaxLength(12)
                     .IsUnicode(false);
             });
 
@@ -68,13 +68,13 @@ namespace StoreDL.Entities
                     .WithMany(p => p.Items)
                     .HasForeignKey(d => d.LocationId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Item__LocationID__4C6B5938");
+                    .HasConstraintName("FK__Item__LocationID__7C1A6C5A");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.Items)
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Item__ProductID__4B7734FF");
+                    .HasConstraintName("FK__Item__ProductID__7B264821");
             });
 
             modelBuilder.Entity<ItemLocation>(entity =>
@@ -140,12 +140,12 @@ namespace StoreDL.Entities
                 entity.HasOne(d => d.Cust)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.CustId)
-                    .HasConstraintName("FK__Order__CustID__4F47C5E3");
+                    .HasConstraintName("FK__Order__CustID__7EF6D905");
 
                 entity.HasOne(d => d.Location)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.LocationId)
-                    .HasConstraintName("FK__Order__LocationI__503BEA1C");
+                    .HasConstraintName("FK__Order__LocationI__7FEAFD3E");
             });
 
             modelBuilder.Entity<Product>(entity =>
