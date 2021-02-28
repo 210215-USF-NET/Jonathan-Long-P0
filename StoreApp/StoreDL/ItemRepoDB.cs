@@ -28,9 +28,15 @@ namespace StoreDL
             return _context.Items.Include("Product").Include("Location").AsNoTracking().Select(x => _mapper.ParseItem(x)).ToList();
         }
 
-        public List<Item> GetItemsByLocation(int locationID)
+        public List<Model.Item> GetItemsByLocation(int locationID)
         {
-            throw new System.NotImplementedException();
+            return _context.Items
+            .Include("Product")
+            .Include("Location")
+            .AsNoTracking()
+            .Select(x => _mapper.ParseItem(x))
+            .ToList()
+            .FindAll(x => x.Location.LocationID == locationID);
         }
     }
 }

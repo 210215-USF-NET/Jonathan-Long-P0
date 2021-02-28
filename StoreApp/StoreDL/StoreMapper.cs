@@ -44,6 +44,16 @@ namespace StoreDL
             return newLocation;
         }
 
+        public Entity.Location ParseLocation(Model.Location location)
+        {
+            return new Entity.Location
+            {
+                Address = location.Address,
+                State = location.State,
+                LocationName = location.LocationName
+            };
+        }
+
         public Model.Product ParseProduct(Entity.Product product)
         {
             Model.Product newProduct = new Model.Product(product.ProductName, decimal.ToDouble(product.Price), product.Description);

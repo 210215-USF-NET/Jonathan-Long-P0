@@ -100,7 +100,7 @@ namespace StoreUI
             } else
             {
                 Console.WriteLine($"{selectedLocation.LocationName} Inventory:");
-                foreach(var item in _itemBL.GetItems())
+                foreach(var item in _itemBL.GetItemsByLocation(storeCode))
                 {
                     Console.WriteLine(item.Product.ToString());
                 }
