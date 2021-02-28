@@ -39,5 +39,10 @@ namespace StoreModels
             get {return location;}
             set {location = value;}
         }
+        //Methods
+        public override string ToString()
+        {
+            return $"\t Quantity: {this.Quantity}";
+        }
     }
 }

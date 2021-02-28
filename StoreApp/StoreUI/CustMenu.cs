@@ -103,6 +103,7 @@ namespace StoreUI
                 foreach(var item in _itemBL.GetItemsByLocation(storeCode))
                 {
                     Console.WriteLine(item.Product.ToString());
+                    Console.WriteLine(item.ToString());
                 }
 
             }
