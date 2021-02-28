@@ -11,11 +11,13 @@ namespace StoreUI
         private ICustomerBL _customerBL;
         private ILocationBL _locationBL;
         private IProductBL _productBL;
-        public CustMenu(ICustomerBL customerBL,ILocationBL locationBL,IProductBL productBL)
+        private IItemBL _itemBL;
+        public CustMenu(ICustomerBL customerBL,ILocationBL locationBL,IProductBL productBL,IItemBL itemBL)
         {
             _customerBL = customerBL;
             _locationBL = locationBL;
             _productBL = productBL;
+            _itemBL = itemBL;
         }
         public void Start()
         {
@@ -97,12 +99,17 @@ namespace StoreUI
                 Console.WriteLine("Error - store code not valid");
             } else
             {
-                Console.WriteLine($"Entered Store {selectedLocation.LocationName}");
+                Console.WriteLine($"{selectedLocation.LocationName} Inventory:");
+                foreach(var item in _itemBL.GetItems())
+                {
+                    Console.WriteLine(item.Product.ToString());
+                }
+
             }
         }
         public void BackToMainMenu()
         {
-            Menu menu = new Menu(_customerBL, _locationBL, _productBL);
+            Menu menu = new Menu(_customerBL, _locationBL, _productBL, _itemBL);
             menu.Start();
         }
     }

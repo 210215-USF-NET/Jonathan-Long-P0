@@ -11,11 +11,13 @@ namespace StoreUI
         private ICustomerBL _customerBL;
         private ILocationBL _locationBL;
         private IProductBL _productBL;
-        public Menu(ICustomerBL customerBL, ILocationBL locationBL, IProductBL productBL)
+        private IItemBL _itemBL;
+        public Menu(ICustomerBL customerBL, ILocationBL locationBL, IProductBL productBL, IItemBL itemBL)
         {
             _customerBL = customerBL;
             _locationBL = locationBL;
             _productBL = productBL;
+            _itemBL = itemBL;
 
         }
         public void Start()
@@ -35,7 +37,7 @@ namespace StoreUI
             switch(option)
             {
                 case "0":
-                    CustMenu customerMenu = new CustMenu(_customerBL, _locationBL, _productBL);
+                    CustMenu customerMenu = new CustMenu(_customerBL, _locationBL, _productBL, _itemBL);
                     menuRun = false;
                     customerMenu.Start();
                     break;

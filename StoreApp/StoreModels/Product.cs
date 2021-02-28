@@ -13,9 +13,8 @@ namespace StoreModels
         private string description;
 
         //Constructor(s)
-        public Product(int productID, string productName, double price, string description)
+        public Product(string productName, double price, string description)
         {
-            this.productID = productID;
             this.productName = productName;
             this.price = price;
             this.description = description;
@@ -40,6 +39,11 @@ namespace StoreModels
         {
             get {return description;}
             set {description = value;}
+        }
+        //Methods
+        public override string ToString()
+        {
+            return $"{this.ProductName} Details: \n\t Price: {this.Price} \n\tDescription: {this.Description}";
         }
 
     }

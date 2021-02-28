@@ -12,9 +12,8 @@ namespace StoreModels
         private Location location;
 
         //Constructor(s)
-        public Item(int itemID, int quantity, Product product, Location location)
+        public Item(int quantity, Product product, Location location)
         {
-            this.itemID = itemID;
             this.quantity = quantity;
             this.product = product;
             this.location = location;

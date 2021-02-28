@@ -1,11 +1,11 @@
 using StoreModels;
 using System.Collections.Generic;
-namespace StoreDL
+namespace StoreBL
 {
-    public interface IItemRepository
+    public interface IItemBL
     {
          List<Item> GetItems();
-         Item AddItem(Item newItem);
+         void addItem(Item newItem);
          List<Item> GetItemsByLocation(int locationID);
     }
 }

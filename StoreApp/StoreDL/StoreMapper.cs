@@ -20,11 +20,35 @@ namespace StoreDL
             };
         }
 
+        public Model.Item ParseItem(Entity.Item item)
+        {
+            Model.Item newItem = new Model.Item(item.Quantity, ParseProduct(item.Product), ParseLocation(item.Location));
+            newItem.ItemID = item.ItemId;
+            return newItem;
+        }
+
+        public Entity.Item ParseItem(Model.Item item)
+        {
+            return new Entity.Item
+            {
+                Quantity = item.Quantity,
+                ProductId = item.Product.ProductID,
+                LocationId = item.Location.LocationID
+            };
+        }
+
         public Model.Location ParseLocation(Entity.Location location)
         {
             Model.Location newLocation = new Model.Location(location.Address, location.State, location.LocationName);
             newLocation.LocationID = location.LocationId;
             return newLocation;
+        }
+
+        public Model.Product ParseProduct(Entity.Product product)
+        {
+            Model.Product newProduct = new Model.Product(product.ProductName, decimal.ToDouble(product.Price), product.Description);
+            newProduct.ProductID = product.ProductId;
+            return newProduct;
         }
     }
 }
