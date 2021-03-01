@@ -47,6 +47,18 @@ namespace StoreDL
             .FindLast(x => x.Total == totalCost);
         }
 
+        public List<Order> GetCustomerOrders(int custID)
+        {
+            return _context.Orders
+            .Include("Cust")
+            .AsNoTracking()
+            .Include("Location")
+            .AsNoTracking()
+            .Select(x => _mapper.ParseOrder(x))
+            .ToList()
+            .FindAll(x => x.Customer.CustID == custID);
+        }
+
         public List<Order> GetOrders()
         {
             return _context.Orders.Include("Cust").AsNoTracking().Include("Location").AsNoTracking().Select(x => _mapper.ParseOrder(x)).ToList();

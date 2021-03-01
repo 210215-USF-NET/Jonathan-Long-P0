@@ -46,5 +46,10 @@ namespace StoreModels
             get {return location;}
             set {location = value;}
         }
+        //Methods
+        public override string ToString()
+        {
+            return $"Order ID: {this.OrderID} \n\tTotal: ${this.Total}\n\tDate: {this.Date}";
+        }
     }
 }

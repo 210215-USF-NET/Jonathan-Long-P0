@@ -52,7 +52,7 @@ namespace StoreUI
                     GetStores();
                     break;
                 case "3":
-                    GetOrders();
+                    GetOrderHistory();
                     break;
                 case "4":
                     BackToMainMenu();
@@ -157,7 +157,7 @@ namespace StoreUI
                             po.Quantity = cartQuantity[i];
                             _productOrderBL.AddProductOrder(po);
                         }
-                        Console.WriteLine(oID + " eh maybe worked??");
+                        Console.WriteLine("Order successfully placed!");
                         shop = false;
                                          
                     }
@@ -207,6 +207,14 @@ namespace StoreUI
             foreach(var item in _orderBL.GetOrders())
             {
                 Console.WriteLine(item.OrderID);
+            }
+        }
+        public void GetOrderHistory()
+        {
+            Customer customer = FindCustomer();
+            foreach(var item in _orderBL.GetCustomerOrders(customer.CustID))
+            {
+                Console.WriteLine(item.ToString());
             }
         }
         public void BackToMainMenu()

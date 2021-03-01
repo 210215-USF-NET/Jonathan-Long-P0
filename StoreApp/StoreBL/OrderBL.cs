@@ -25,6 +25,11 @@ namespace StoreBL
             return _repo.FindOrder(totalCost);
         }
 
+        public List<Order> GetCustomerOrders(int custID)
+        {
+            return _repo.GetCustomerOrders(custID);
+        }
+
         public List<Order> GetOrders()
         {
             return _repo.GetOrders();
