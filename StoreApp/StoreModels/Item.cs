@@ -42,7 +42,7 @@ namespace StoreModels
         //Methods
         public override string ToString()
         {
-            return $"\t Quantity: {this.Quantity}";
+            return $"\tQuantity: {this.Quantity}";
         }
     }
 }

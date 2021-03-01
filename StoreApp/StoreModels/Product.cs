@@ -43,7 +43,7 @@ namespace StoreModels
         //Methods
         public override string ToString()
         {
-            return $"{this.ProductName} Details: \n\t Price: {this.Price} \n\tDescription: {this.Description}";
+            return $"{this.ProductName} Details: \n\tProductID: {this.ProductID}\n\tPrice: ${this.Price}\n\tDescription: {this.Description}";
         }
 
     }

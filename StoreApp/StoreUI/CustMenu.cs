@@ -12,12 +12,16 @@ namespace StoreUI
         private ILocationBL _locationBL;
         private IProductBL _productBL;
         private IItemBL _itemBL;
-        public CustMenu(ICustomerBL customerBL,ILocationBL locationBL,IProductBL productBL,IItemBL itemBL)
+        private IOrderBL _orderBL;
+        private IProductOrderBL _productOrderBL;
+        public CustMenu(ICustomerBL customerBL,ILocationBL locationBL,IProductBL productBL,IItemBL itemBL, IOrderBL orderBL, IProductOrderBL productOrderBL)
         {
             _customerBL = customerBL;
             _locationBL = locationBL;
             _productBL = productBL;
             _itemBL = itemBL;
+            _orderBL = orderBL;
+            _productOrderBL = productOrderBL;
         }
         public void Start()
         {
@@ -110,7 +114,7 @@ namespace StoreUI
                 do
                 {
                     Console.WriteLine();
-                    Console.WriteLine("Select an item code to add to your order");
+                    Console.WriteLine("Select ProductID to add product to your order");
                     Console.WriteLine("Type \'Cancel\' to cancel order or \'Finish\' to complete your order");
                     Console.WriteLine("Selection:");
                     string option = Console.ReadLine();
@@ -134,7 +138,7 @@ namespace StoreUI
         }
         public void BackToMainMenu()
         {
-            Menu menu = new Menu(_customerBL, _locationBL, _productBL, _itemBL);
+            Menu menu = new Menu(_customerBL, _locationBL, _productBL, _itemBL, _orderBL, _productOrderBL);
             menu.Start();
         }
     }
