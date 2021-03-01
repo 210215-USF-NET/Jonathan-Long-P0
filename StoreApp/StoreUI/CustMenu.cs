@@ -1,6 +1,7 @@
 using System;
 using StoreModels;
 using StoreBL;
+using System.Collections.Generic;
 namespace StoreUI
 {
     /// <summary>
@@ -111,8 +112,12 @@ namespace StoreUI
                 }
                 Order newOrder = new Order(); //create new order object
                 bool shop = true;
+                List<Product> cartProducts = new List<Product>();
+                List<int> cartQuantity = new List<int>();
+                double totalCost = 0.0;
                 do
                 {
+                    //Product selectedProduct = null;
                     Console.WriteLine();
                     Console.WriteLine("Select ProductID to add product to your order");
                     Console.WriteLine("Type \'Cancel\' to cancel order or \'Finish\' to complete your order");
@@ -124,17 +129,62 @@ namespace StoreUI
                     }
                     else if(option == "Finish" || option == "finish")
                     {
-                        //Checkout logic...
+                        //Create Order
+                        newOrder.Total = totalCost;  
+                        newOrder.Location = _locationBL.GetSpecificLocation(storeCode);
+                        Customer orderCust = FindCustomer();
+                        if(orderCust == null)
+                        {
+                            Console.WriteLine("Oof, null customer");
+                        }
+                        else
+                        {
+                            newOrder.Customer = orderCust;
+                        }
+                        _orderBL.AddOrder(newOrder);
+                        shop = false;
+                                         
                     }
                     else
                     {
-                        //Need logic to make sure productID exists 
-                        Console.WriteLine("Enter quantity:");
-                        int quantity = int.Parse(Console.ReadLine());
+                        foreach(var item in _productBL.GetProducts())
+                        {
+                            if (int.Parse(option) == item.ProductID)
+                            {
+                                cartProducts.Add(item);
+                                Console.WriteLine("Enter quantity:");
+                                int quantity = int.Parse(Console.ReadLine());
+                                cartQuantity.Add(quantity);
+                                totalCost = (totalCost) + (item.Price * quantity);
+                            }
+                        }
+
+
                     }
                 }while (shop);
 
             }
+        }
+        public Customer FindCustomer()
+        {
+            Console.WriteLine("Customer First Name: ");
+            string firstName = Console.ReadLine();
+            Console.WriteLine("Customer Last Name: ");
+            string lastName = Console.ReadLine();
+            int check = 0;
+            foreach(var item in _customerBL.GetCustomers())
+            {
+                if(item.FirstName == firstName && item.LastName == lastName)
+                {
+                    return item;
+                }
+            }
+            if(check == 0)
+            {
+                Console.WriteLine("No matching customer found");
+            }
+            Customer nullCust = null;
+            return nullCust;
         }
         public void BackToMainMenu()
         {

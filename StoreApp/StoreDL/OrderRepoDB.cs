@@ -16,7 +16,7 @@ namespace StoreDL
             _context = context;
             _mapper = mapper;
         }
-        public Order AddOrder(Order newOrder)
+        public Model.Order AddOrder(Model.Order newOrder)
         {
             _context.Orders.Add(_mapper.ParseOrder(newOrder));
             _context.SaveChanges();

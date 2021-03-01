@@ -48,6 +48,7 @@ create table ProductOrder
 (
 	ProductID int not null,
 	OrderID int not null,
+	Quantity int not null,
 	Constraint ProductOrderPK Primary Key(ProductID, OrderID),
 	Constraint ProductOrderFK1 foreign key(ProductID) references Product(ProductID),
 	Constraint ProductOrderFK2 foreign key(OrderID) references [Order](OrderID)
@@ -70,6 +71,22 @@ insert into Product values ('Rossingol Evo 70 Ski Boots', 219.95, 'Built with co
 insert into [Location] values ('123 Ski Way', 'VA', 'Ski Virginia');
 insert into [Location] values ('52 Mountain Rd', 'VT', 'Sugarbush');
 
-Select * From Customer;
+insert into Item values (20, 0, 0);
+insert into Item values (15, 1, 0);
+insert into Item values (20, 2, 0);
+insert into Item values (25, 3, 0);
+insert into Item values (10, 4, 0);
 
+insert into Item values (18, 0, 1);
+insert into Item values (20, 1, 1);
+insert into Item values (20, 3, 1);
+
+Select Product.ProductName, Item.Quantity from Product inner join Item On Product.ProductID = Item.ProductID Where Item.LocationID = 0;
+
+Select * From Customer;
 Select * From [Location];
+Select * From [Order];
+Select * From ProductOrder;
+Select * From Product;
+Select * From Item;
+
