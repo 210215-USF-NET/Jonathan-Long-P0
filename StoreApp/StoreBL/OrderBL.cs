@@ -20,6 +20,11 @@ namespace StoreBL
             return _repo.FindOrder(orderID);
         }
 
+        public Order FindOrder(double totalCost)
+        {
+            return _repo.FindOrder(totalCost);
+        }
+
         public List<Order> GetOrders()
         {
             return _repo.GetOrders();

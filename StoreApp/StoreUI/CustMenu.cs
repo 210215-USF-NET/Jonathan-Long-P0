@@ -36,7 +36,8 @@ namespace StoreUI
             Console.WriteLine("[0] - New Customer");
             Console.WriteLine("[1] - Search Existing Customers");
             Console.WriteLine("[2] - Select a Store Location");
-            Console.WriteLine("[3] - Back to main menu");
+            Console.WriteLine("[3] - View Order History");
+            Console.WriteLine("[4] - Back to main menu");
             Console.WriteLine("Option:");
             string option = Console.ReadLine();
             switch(option)
@@ -51,6 +52,9 @@ namespace StoreUI
                     GetStores();
                     break;
                 case "3":
+                    GetOrders();
+                    break;
+                case "4":
                     BackToMainMenu();
                     menuRun = false;
                     break;
@@ -131,7 +135,7 @@ namespace StoreUI
                     {
                         //Create Order
                         newOrder.Total = totalCost;  
-                        newOrder.Location = _locationBL.GetSpecificLocation(storeCode);
+                        newOrder.Location = selectedLocation;
                         Customer orderCust = FindCustomer();
                         if(orderCust == null)
                         {
@@ -142,6 +146,10 @@ namespace StoreUI
                             newOrder.Customer = orderCust;
                         }
                         _orderBL.AddOrder(newOrder);
+                       
+                        //Add products to ProductOrder
+                        int oID = _orderBL.FindOrder(newOrder.Total).OrderID;
+                        Console.WriteLine(oID + " eh maybe worked??");
                         shop = false;
                                          
                     }
@@ -185,6 +193,13 @@ namespace StoreUI
             }
             Customer nullCust = null;
             return nullCust;
+        }
+        public void GetOrders()
+        {
+            foreach(var item in _orderBL.GetOrders())
+            {
+                Console.WriteLine(item.OrderID);
+            }
         }
         public void BackToMainMenu()
         {

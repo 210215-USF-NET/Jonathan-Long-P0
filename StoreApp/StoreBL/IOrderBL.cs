@@ -7,5 +7,6 @@ namespace StoreBL
          List<Order> GetOrders();
          void AddOrder(Order newOrder);
          Order FindOrder(int orderID);
+         Order FindOrder(double totalCost);
     }
 }

@@ -73,7 +73,9 @@ namespace StoreDL
                 Total = Convert.ToDecimal(order.Total),
                 Date = order.Date,
                 CustId = order.Customer.CustID,
-                LocationId = order.Location.LocationID
+                LocationId = order.Location.LocationID,
+                //Cust = ParseCustomer(order.Customer),
+                //Location = ParseLocation(order.Location)
             };
         }
 
