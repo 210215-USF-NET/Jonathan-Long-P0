@@ -149,6 +149,14 @@ namespace StoreUI
                        
                         //Add products to ProductOrder
                         int oID = _orderBL.FindOrder(newOrder.Total).OrderID;
+                        for(int i = 0; i < cartProducts.Count; i++)
+                        {
+                            ProductOrder po = new ProductOrder();
+                            po.Order = _orderBL.FindOrder(oID);
+                            po.Product = cartProducts[i];
+                            po.Quantity = cartQuantity[i];
+                            _productOrderBL.AddProductOrder(po);
+                        }
                         Console.WriteLine(oID + " eh maybe worked??");
                         shop = false;
                                          
