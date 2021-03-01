@@ -145,7 +145,7 @@ namespace StoreUI
                         shop = false;
                                          
                     }
-                    else
+                    else if(option != "Cancel" && option != "Finish")
                     {
                         foreach(var item in _productBL.GetProducts())
                         {

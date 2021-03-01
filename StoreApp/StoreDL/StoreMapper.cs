@@ -74,7 +74,6 @@ namespace StoreDL
                 Date = order.Date,
                 CustId = order.Customer.CustID,
                 LocationId = order.Location.LocationID
-
             };
         }
 
