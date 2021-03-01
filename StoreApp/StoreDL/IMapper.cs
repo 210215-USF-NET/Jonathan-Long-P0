@@ -14,5 +14,9 @@ namespace StoreDL
          Model.Product ParseProduct(Entity.Product product);
          Model.Item ParseItem(Entity.Item item);
          Entity.Item ParseItem(Model.Item item);
+         Model.ProductOrder ParseProductOrder(Entity.ProductOrder productOrder);
+         Entity.ProductOrder ParseProductOrder(Model.ProductOrder productOrder);
+         Model.Order ParseOrder(Entity.Order order);
+         Entity.Order ParseOrder(Model.Order order);
     }
 }

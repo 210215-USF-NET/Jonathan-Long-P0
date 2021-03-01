@@ -6,8 +6,8 @@ namespace StoreModels
     public class ProductOrder
     {
         //Properties
-        public Product product { get; set; }
-        public Order order { get; set; }
+        public Product Product { get; set; }
+        public Order Order { get; set; }
         public int Quantity { get; set; }
     }
 }

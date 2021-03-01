@@ -5,7 +5,7 @@ namespace StoreDL
     public interface IProductOrderRepository
     {
         List<ProductOrder> GetProductOrders();
-        ProductOrder addProductOrder(ProductOrder newProductOrder);
+        ProductOrder AddProductOrder(ProductOrder newProductOrder);
         List<ProductOrder> GetProductOrderByOrder(int orderID);
 
     }
