@@ -7,6 +7,7 @@ namespace StoreDL
         List<ProductOrder> GetProductOrders();
         ProductOrder AddProductOrder(ProductOrder newProductOrder);
         List<ProductOrder> GetProductOrderByOrder(int orderID);
+        List<ProductOrder> GetCustomerProductOrders(Customer customer);
 
     }
 }

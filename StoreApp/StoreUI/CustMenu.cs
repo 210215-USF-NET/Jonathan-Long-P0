@@ -215,7 +215,9 @@ namespace StoreUI
             foreach(var item in _orderBL.GetCustomerOrders(customer.CustID))
             {
                 Console.WriteLine(item.ToString());
+                _productBL.ProductsByOrder(item.OrderID);
             }
+             
         }
         public void BackToMainMenu()
         {

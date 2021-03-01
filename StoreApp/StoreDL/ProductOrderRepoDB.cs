@@ -3,6 +3,7 @@ using Model = StoreModels;
 using Entity = StoreDL.Entities;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using StoreModels;
 
 namespace StoreDL
 {
@@ -22,20 +23,36 @@ namespace StoreDL
             return newProductOrder;
         }
 
-        public List<Model.ProductOrder> GetProductOrderByOrder(int orderID)
+        public List<ProductOrder> GetCustomerProductOrders(Customer customer)
         {
             return _context.ProductOrders
             .Include("Product")
+            .AsNoTracking()
+            .Include("Order")
+            .AsNoTracking()
+            .Select(x => _mapper.ParseProductOrder(x))
+            .ToList()
+            .FindAll(x => x.Order.Customer == customer);
+        }
+
+        public List<Model.ProductOrder> GetProductOrderByOrder(int orderID)
+        {
+
+             return _context.ProductOrders
+            .Include("Product")
+            .AsNoTracking()
             .Include("Order")
             .AsNoTracking()
             .Select(x => _mapper.ParseProductOrder(x))
             .ToList()
             .FindAll(x => x.Order.OrderID == orderID);
+            
         }
+        
 
         public List<Model.ProductOrder> GetProductOrders()
         {
-            return _context.ProductOrders.Include("Product").Include("Order").AsNoTracking().Select(x => _mapper.ParseProductOrder(x)).ToList();
+            return _context.ProductOrders.Include("Product").AsNoTracking().Include("Order").AsNoTracking().Select(x => _mapper.ParseProductOrder(x)).ToList();
         }
     }
 }

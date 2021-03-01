@@ -24,13 +24,14 @@ namespace StoreDL
 
         public List<Model.Item> GetItems()
         {
-            return _context.Items.Include("Product").Include("Location").AsNoTracking().Select(x => _mapper.ParseItem(x)).ToList();
+            return _context.Items.Include("Product").AsNoTracking().Include("Location").AsNoTracking().Select(x => _mapper.ParseItem(x)).ToList();
         }
 
         public List<Model.Item> GetItemsByLocation(int locationID)
         {
             return _context.Items
             .Include("Product")
+            .AsNoTracking()
             .Include("Location")
             .AsNoTracking()
             .Select(x => _mapper.ParseItem(x))

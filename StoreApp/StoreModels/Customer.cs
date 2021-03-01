@@ -12,16 +12,17 @@ namespace StoreModels
         private string firstName;
         private string lastName;
         private string phoneNumber;
-        public static int numberOfCustomers = 0;
 
         //Constructor(s)
         public Customer(string firstName, string lastName, string phoneNumber)
         {
-            custID = numberOfCustomers;
             this.firstName = firstName;
             this.lastName = lastName;
             this.phoneNumber = phoneNumber;
-            numberOfCustomers++;
+        }
+        public Customer()
+        {
+            
         }
 
         //Properties

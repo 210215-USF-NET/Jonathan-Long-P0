@@ -5,5 +5,6 @@ namespace StoreBL
     public interface IProductBL
     {
          List<Product> GetProducts();
+         void ProductsByOrder(int orderID);
     }
 }

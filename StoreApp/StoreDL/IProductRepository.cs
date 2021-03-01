@@ -5,5 +5,6 @@ namespace StoreDL
     public interface IProductRepository
     {
          List<Product> GetProducts();
+         void ProductsByOrder(int orderID);
     }
 }
