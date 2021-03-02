@@ -46,7 +46,9 @@ namespace StoreUI
                     customerMenu.Start();
                     break;
                 case "1":
-                    //Go to Manager Menu
+                    ManagerMenu managerMenu = new ManagerMenu(_customerBL, _locationBL, _productBL, _itemBL, _orderBL, _productOrderBL);
+                    menuRun = false;
+                    managerMenu.Start();
                     break;
                 case "2":
                     menuRun = false;

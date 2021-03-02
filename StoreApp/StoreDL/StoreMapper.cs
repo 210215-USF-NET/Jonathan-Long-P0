@@ -58,7 +58,7 @@ namespace StoreDL
 
         public Model.Order ParseOrder(Entity.Order order)
         {
-            Model.Order newOrder = new Model.Order();
+            Model.Order newOrder = new Model.Order(order.Date);
             newOrder.OrderID = order.OrderId;
             newOrder.Total = decimal.ToDouble(order.Total);
             newOrder.Customer = ParseCustomer(order.Cust);

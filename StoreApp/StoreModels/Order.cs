@@ -18,6 +18,10 @@ namespace StoreModels
         {
             this.date = DateTime.Now;
         }
+        public Order(DateTime date)
+        {
+            this.date = date;
+        }
         
 
         //Properties
