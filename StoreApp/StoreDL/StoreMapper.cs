@@ -35,7 +35,9 @@ namespace StoreDL
             {
                 Quantity = item.Quantity,
                 ProductId = item.Product.ProductID,
-                LocationId = item.Location.LocationID
+                LocationId = item.Location.LocationID,
+                ItemId = item.ItemID
+                
             };
         }
 

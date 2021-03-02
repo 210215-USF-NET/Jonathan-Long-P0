@@ -32,5 +32,11 @@ namespace StoreBL
         {
             return _repo.GetItemsByLocation(locationID);
         }
+
+        public void UpdateItem(Item item2BUpdated, int newQuantity)
+        {
+            item2BUpdated.Quantity = newQuantity;
+            _repo.UpdateItem(item2BUpdated);
+        }
     }
 }

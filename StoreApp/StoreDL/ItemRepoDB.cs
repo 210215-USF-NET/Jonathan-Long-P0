@@ -54,5 +54,13 @@ namespace StoreDL
             .ToList()
             .FindAll(x => x.Location.LocationID == locationID);
         }
+
+        public void UpdateItem(Item item2BUpdated)
+        {
+            Entity.Item oldItem = _context.Items.Find(item2BUpdated.ItemID);
+            _context.Entry(oldItem).CurrentValues.SetValues(_mapper.ParseItem(item2BUpdated));
+            _context.SaveChanges();
+            _context.ChangeTracker.Clear();
+        }
     }
 }

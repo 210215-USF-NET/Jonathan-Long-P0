@@ -120,7 +120,10 @@ namespace StoreUI
             }
             else
             {
-
+                Console.WriteLine($"Enter new quantity for {item2BUpdated.Product.ProductName} at {item2BUpdated.Location.LocationName}:");
+                int q = int.Parse(Console.ReadLine());
+                _itemBL.UpdateItem(item2BUpdated, q);
+                Console.WriteLine("Successfully updated!");
             }
             Console.WriteLine();
         }

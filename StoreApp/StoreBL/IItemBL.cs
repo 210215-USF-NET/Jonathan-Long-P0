@@ -8,5 +8,6 @@ namespace StoreBL
          void addItem(Item newItem);
          List<Item> GetItemsByLocation(int locationID);
          Item GetItemByID(int itemID);
+         void UpdateItem(Item item2BUpdated, int newQuantity);
     }
 }
