@@ -70,16 +70,28 @@ namespace StoreUI
             switch (option)
             {
                 case 1:
-                   foreach(var item in _orderBL.GetLocationOrder(loc.LocationID))
+                   foreach(var item in _orderBL.GetLocationOrderASC(loc.LocationID))
                    {
                        Console.WriteLine(item.ToString());
                    }
                     break;
                 case 2:
+                    foreach(var item in _orderBL.GetLocationOrderDESC(loc.LocationID))
+                    {
+                        Console.WriteLine(item.ToString());
+                    }
                     break;
                 case 3:
+                    foreach(var item in _orderBL.GetLocationOrderASCTotal(loc.LocationID))
+                    {
+                        Console.WriteLine(item.ToString());
+                    }
                     break;
                 case 4:
+                    foreach(var item in _orderBL.GetLocationOrderDESCTotal(loc.LocationID))
+                    {
+                        Console.WriteLine(item.ToString());
+                    }
                     break;
             }
         }

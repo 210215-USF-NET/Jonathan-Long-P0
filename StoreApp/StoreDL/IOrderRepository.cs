@@ -9,7 +9,9 @@ namespace StoreDL
          Order FindOrder(int orderID);
          Order FindOrder(double totalCost);
          List<Order> GetCustomerOrders(int custID);
-         
-         List<Order> GetLocationOrder(int locationID);
+         List<Order> GetLocationOrderASC(int locationID);
+        List<Order> GetLocationOrderDESC(int locationID);
+        List<Order> GetLocationOrderASCTotal(int locationID);
+        List<Order> GetLocationOrderDESCTotal(int locationID);
     }
 }
