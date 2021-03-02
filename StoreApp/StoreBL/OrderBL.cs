@@ -30,6 +30,11 @@ namespace StoreBL
             return _repo.GetCustomerOrders(custID);
         }
 
+        public List<Order> GetLocationOrder(int locationID)
+        {
+            return _repo.GetLocationOrder(locationID);
+        }
+
         public List<Order> GetOrders()
         {
             return _repo.GetOrders();

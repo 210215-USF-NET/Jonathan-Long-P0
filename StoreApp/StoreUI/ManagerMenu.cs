@@ -70,6 +70,10 @@ namespace StoreUI
             switch (option)
             {
                 case 1:
+                   foreach(var item in _orderBL.GetLocationOrder(loc.LocationID))
+                   {
+                       Console.WriteLine(item.ToString());
+                   }
                     break;
                 case 2:
                     break;

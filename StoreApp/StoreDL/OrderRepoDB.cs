@@ -59,6 +59,31 @@ namespace StoreDL
             .FindAll(x => x.Customer.CustID == custID);
         }
 
+        public List<Order> GetLocationOrder(int locationID)
+        {
+            var queryLocations = 
+            (from order in _context.Orders
+            join location in _context.Locations
+            on order.LocationId equals location.LocationId
+            join cust in _context.Customers
+            on order.CustId equals cust.CustId
+            where location.LocationId == locationID
+            orderby order.Date
+            select order).ToList();
+            if(queryLocations == null)
+                return null;
+            List<Order> returnList = new List<Order>();
+            foreach(var item in queryLocations)
+            {
+                item.Cust = _context.Customers.Find(item.CustId);
+                item.Location = _context.Locations.Find(item.LocationId);
+                Order newOrder = _mapper.ParseOrder(item);
+                returnList.Add(newOrder);
+            }
+            return returnList;
+            
+        }
+
         public List<Order> GetOrders()
         {
             return _context.Orders.Include("Cust").AsNoTracking().Include("Location").AsNoTracking().Select(x => _mapper.ParseOrder(x)).ToList();
