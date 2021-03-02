@@ -81,7 +81,19 @@ insert into Item values (18, 0, 1);
 insert into Item values (20, 1, 1);
 insert into Item values (20, 3, 1);
 
-Select Product.ProductName, Item.Quantity from Product inner join Item On Product.ProductID = Item.ProductID Where Item.LocationID = 0;
+Select Product.ProductName, Item.Quantity from Product inner join Item On Product.ProductID = Item.ProductID Where Item.LocationID = 0; 
+
+Select Product.ProductName, Product.Price, Product.[Description] From Product
+Join ProductOrder on Product.ProductID = ProductOrder.ProductID Join [Order] on ProductOrder.OrderID = [Order].OrderID
+Join Customer on [Order].CustID = Customer.CustID Join [Location] on [Order].LocationID = Location.LocationID Where [Order].OrderID = 3;
+
+Select [Order].OrderID, [Order].Total, [Order].Date From [Order]
+Join [Location] on [Order].LocationID = [Location].LocationID Where [Location].LocationID = 1 Order By [Order].Total;
+
+Select [Order].OrderID, [Order].Total, [Order].Date From [Order]
+Join Customer On [Order].CustID = Customer.CustID Where Customer.CustID = 0 Order By [Order].Total;
+
+Select * From Item Where ItemID = 0;
 
 Select * From Customer;
 Select * From [Location];
@@ -89,4 +101,3 @@ Select * From [Order];
 Select * From ProductOrder;
 Select * From Product;
 Select * From Item;
-

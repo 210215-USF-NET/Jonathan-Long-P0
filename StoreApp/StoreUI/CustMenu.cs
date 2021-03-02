@@ -136,15 +136,19 @@ namespace StoreUI
                         //Create Order
                         newOrder.Total = totalCost;  
                         newOrder.Location = selectedLocation;
+                        bool findCustomer = false;
+                        do{
                         Customer orderCust = FindCustomer();
                         if(orderCust == null)
                         {
-                            Console.WriteLine("Oof, null customer");
+                            Console.WriteLine("No matching customer found, try searching again");
                         }
                         else
                         {
                             newOrder.Customer = orderCust;
+                            findCustomer = true;
                         }
+                        }while(!findCustomer);
                         _orderBL.AddOrder(newOrder);
                        
                         //Add products to ProductOrder
@@ -156,6 +160,10 @@ namespace StoreUI
                             po.Product = cartProducts[i];
                             po.Quantity = cartQuantity[i];
                             _productOrderBL.AddProductOrder(po);
+                            Console.WriteLine("Order Summary:");
+                            Console.WriteLine("--------------");
+                            po.ToString();
+                            _productBL.ProductsByOrder(po.Order.OrderID);
                         }
                         Console.WriteLine("Order successfully placed!");
                         shop = false;

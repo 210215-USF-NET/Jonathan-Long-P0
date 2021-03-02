@@ -20,6 +20,7 @@ namespace StoreDL
         {
             _context.ProductOrders.Add(_mapper.ParseProductOrder(newProductOrder));
             _context.SaveChanges();
+            _context.ChangeTracker.Clear();
             return newProductOrder;
         }
 

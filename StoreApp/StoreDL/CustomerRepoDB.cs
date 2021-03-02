@@ -25,7 +25,7 @@ namespace StoreDL
 
         public List<Model.Customer> GetCustomers()
         {
-            return _context.Customers.Select(x => _mapper.ParseCustomer(x)).ToList();
+            return _context.Customers.AsNoTracking().Select(x => _mapper.ParseCustomer(x)).ToList();
         }
     }
 }
