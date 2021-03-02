@@ -13,5 +13,9 @@ namespace StoreDL
         List<Order> GetLocationOrderDESC(int locationID);
         List<Order> GetLocationOrderASCTotal(int locationID);
         List<Order> GetLocationOrderDESCTotal(int locationID);
+        List<Order> GetCustomerOrdersASC(int custID);
+        List<Order> GetCustomerOrdersDESC(int custID);
+        List<Order> GetCustomerOrdersASCTotal(int custID);
+        List<Order> GetCustomerOrdersDESCTotal(int custID);
     }
 }

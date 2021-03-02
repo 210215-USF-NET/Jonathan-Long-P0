@@ -73,24 +73,28 @@ namespace StoreUI
                    foreach(var item in _orderBL.GetLocationOrderASC(loc.LocationID))
                    {
                        Console.WriteLine(item.ToString());
+                       _productBL.ProductsByOrder(item.OrderID);
                    }
                     break;
                 case 2:
                     foreach(var item in _orderBL.GetLocationOrderDESC(loc.LocationID))
                     {
                         Console.WriteLine(item.ToString());
+                        _productBL.ProductsByOrder(item.OrderID);
                     }
                     break;
                 case 3:
                     foreach(var item in _orderBL.GetLocationOrderASCTotal(loc.LocationID))
                     {
                         Console.WriteLine(item.ToString());
+                        _productBL.ProductsByOrder(item.OrderID);
                     }
                     break;
                 case 4:
                     foreach(var item in _orderBL.GetLocationOrderDESCTotal(loc.LocationID))
                     {
                         Console.WriteLine(item.ToString());
+                        _productBL.ProductsByOrder(item.OrderID);
                     }
                     break;
             }

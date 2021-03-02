@@ -212,11 +212,47 @@ namespace StoreUI
         public void GetOrderHistory()
         {
             Customer customer = FindCustomer();
-            foreach(var item in _orderBL.GetCustomerOrders(customer.CustID))
+            Console.WriteLine("Select order history format:");
+            Console.WriteLine("\t[1] - Date(Ascending)\n\t[2] - Date(Descending)\n\t[3] - Total(Highest)\n\t[4] - Total(Lowest)");
+            int option = int.Parse(Console.ReadLine());
+            switch (option)
+            {
+                case 1:
+                   foreach(var item in _orderBL.GetCustomerOrdersASC(customer.CustID))
+                   {
+                       Console.WriteLine(item.ToString());
+                       _productBL.ProductsByOrder(item.OrderID);
+                   }
+                    break;
+                
+                case 2:
+                    foreach(var item in _orderBL.GetCustomerOrdersDESC(customer.CustID))
+                    {
+                        Console.WriteLine(item.ToString());
+                        _productBL.ProductsByOrder(item.OrderID);
+                    }
+                    break;
+                case 3:
+                    foreach(var item in _orderBL.GetCustomerOrdersASCTotal(customer.CustID))
+                    {
+                        Console.WriteLine(item.ToString());
+                        _productBL.ProductsByOrder(item.OrderID);
+                    }
+                    break;
+                case 4:
+                    foreach(var item in _orderBL.GetCustomerOrdersDESCTotal(customer.CustID))
+                    {
+                        Console.WriteLine(item.ToString());
+                        _productBL.ProductsByOrder(item.OrderID);
+                    }
+                    break;
+            }
+            /*foreach(var item in _orderBL.GetCustomerOrders(customer.CustID))
             {
                 Console.WriteLine(item.ToString());
                 _productBL.ProductsByOrder(item.OrderID);
             }
+            */
              
         }
         public void BackToMainMenu()

@@ -59,6 +59,94 @@ namespace StoreDL
             .FindAll(x => x.Customer.CustID == custID);
         }
 
+        public List<Order> GetCustomerOrdersASC(int custID)
+        {
+            var queryCustOrders = 
+            (from order in _context.Orders
+            join customer in _context.Customers
+            on order.CustId equals customer.CustId
+            where customer.CustId == custID
+            orderby order.Date
+            select order).ToList();
+            if(queryCustOrders == null)
+                return null;
+            List<Order> returnList = new List<Order>();
+            foreach(var item in queryCustOrders)
+            {
+                item.Cust = _context.Customers.Find(item.CustId);
+                item.Location = _context.Locations.Find(item.LocationId);
+                Order newOrder = _mapper.ParseOrder(item);
+                returnList.Add(newOrder);
+            }
+            return returnList;
+        }
+
+        public List<Order> GetCustomerOrdersASCTotal(int custID)
+        {
+            var queryCustOrders = 
+            (from order in _context.Orders
+            join customer in _context.Customers
+            on order.CustId equals customer.CustId
+            where customer.CustId == custID
+            orderby order.Total
+            select order).ToList();
+            if(queryCustOrders == null)
+                return null;
+            List<Order> returnList = new List<Order>();
+            foreach(var item in queryCustOrders)
+            {
+                item.Cust = _context.Customers.Find(item.CustId);
+                item.Location = _context.Locations.Find(item.LocationId);
+                Order newOrder = _mapper.ParseOrder(item);
+                returnList.Add(newOrder);
+            }
+            return returnList;
+        }
+
+        public List<Order> GetCustomerOrdersDESC(int custID)
+        {
+            var queryCustOrders = 
+            (from order in _context.Orders
+            join customer in _context.Customers
+            on order.CustId equals customer.CustId
+            where customer.CustId == custID
+            orderby order.Date descending
+            select order).ToList();
+            if(queryCustOrders == null)
+                return null;
+            List<Order> returnList = new List<Order>();
+            foreach(var item in queryCustOrders)
+            {
+                item.Cust = _context.Customers.Find(item.CustId);
+                item.Location = _context.Locations.Find(item.LocationId);
+                Order newOrder = _mapper.ParseOrder(item);
+                returnList.Add(newOrder);
+            }
+            return returnList;
+        }
+
+        public List<Order> GetCustomerOrdersDESCTotal(int custID)
+        {
+            var queryCustOrders = 
+            (from order in _context.Orders
+            join customer in _context.Customers
+            on order.CustId equals customer.CustId
+            where customer.CustId == custID
+            orderby order.Total descending
+            select order).ToList();
+            if(queryCustOrders == null)
+                return null;
+            List<Order> returnList = new List<Order>();
+            foreach(var item in queryCustOrders)
+            {
+                item.Cust = _context.Customers.Find(item.CustId);
+                item.Location = _context.Locations.Find(item.LocationId);
+                Order newOrder = _mapper.ParseOrder(item);
+                returnList.Add(newOrder);
+            }
+            return returnList;
+        }
+
         public List<Order> GetLocationOrderASC(int locationID)
         {
             var queryLocations = 

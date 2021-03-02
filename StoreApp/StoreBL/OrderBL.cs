@@ -30,6 +30,26 @@ namespace StoreBL
             return _repo.GetCustomerOrders(custID);
         }
 
+        public List<Order> GetCustomerOrdersASC(int custID)
+        {
+            return _repo.GetCustomerOrdersASC(custID);
+        }
+
+        public List<Order> GetCustomerOrdersASCTotal(int custID)
+        {
+            return _repo.GetCustomerOrdersASCTotal(custID);
+        }
+
+        public List<Order> GetCustomerOrdersDESC(int custID)
+        {
+            return _repo.GetCustomerOrdersDESC(custID);
+        }
+
+        public List<Order> GetCustomerOrdersDESCTotal(int custID)
+        {
+            return _repo.GetCustomerOrdersDESCTotal(custID);
+        }
+
         public List<Order> GetLocationOrderASC(int locationID)
         {
             return _repo.GetLocationOrderASC(locationID);
