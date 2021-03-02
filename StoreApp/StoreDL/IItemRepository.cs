@@ -7,5 +7,6 @@ namespace StoreDL
          List<Item> GetItems();
          Item AddItem(Item newItem);
          List<Item> GetItemsByLocation(int locationID);
+         Item GetItemByID(int itemID);
     }
 }

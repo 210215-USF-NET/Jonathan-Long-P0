@@ -3,6 +3,7 @@ using Model = StoreModels;
 using Entity = StoreDL.Entities;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using StoreModels;
 
 namespace StoreDL
 {
@@ -20,6 +21,21 @@ namespace StoreDL
             _context.Items.Add(_mapper.ParseItem(newItem));
             _context.SaveChanges();
             return newItem;
+        }
+
+        public Item GetItemByID(int itemID)
+        {
+            var queryItem = 
+            (from item in _context.Items
+            where item.ItemId == itemID
+            select item).ToList().FirstOrDefault();
+            if(queryItem == null)
+            {
+                return null;
+            }
+            queryItem.Product = _context.Products.Find(queryItem.ProductId);
+            queryItem.Location = _context.Locations.Find(queryItem.LocationId);
+            return _mapper.ParseItem(queryItem);
         }
 
         public List<Model.Item> GetItems()

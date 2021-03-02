@@ -18,6 +18,11 @@ namespace StoreBL
             _repo.AddItem(newItem);
         }
 
+        public Item GetItemByID(int itemID)
+        {
+            return _repo.GetItemByID(itemID);
+        }
+
         public List<Item> GetItems()
         {
             return _repo.GetItems();

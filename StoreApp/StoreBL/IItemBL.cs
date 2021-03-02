@@ -7,5 +7,6 @@ namespace StoreBL
          List<Item> GetItems();
          void addItem(Item newItem);
          List<Item> GetItemsByLocation(int locationID);
+         Item GetItemByID(int itemID);
     }
 }

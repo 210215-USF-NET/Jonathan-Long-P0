@@ -35,7 +35,7 @@ namespace StoreUI
             Console.WriteLine("Please Select an Option:");
             Console.WriteLine("[0] - View Location Order History");
             Console.WriteLine("[1] - Replenish Inventory");
-            Console.WriteLine("[3] - Back to main menu");
+            Console.WriteLine("[2] - Back to main menu");
             Console.WriteLine("Option:");
             string option = Console.ReadLine();
             switch(option)
@@ -44,12 +44,9 @@ namespace StoreUI
                     LocationHistory();
                     break;
                 case "1":
-                    //GetCustomers();
+                    UpdateItem();
                     break;
                 case "2":
-                    //GetStores();
-                    break;
-                case "3":
                     BackToMainMenu();
                     break;
             }
@@ -99,8 +96,35 @@ namespace StoreUI
                     break;
             }
         }
+        public void UpdateItem()
+        {
+            foreach(var item in _locationBL.GetLocations())
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.WriteLine("Enter location code for store to update inventory:");
+            int option = int.Parse(Console.ReadLine());
+            Location loc = _locationBL.GetSpecificLocation(option);
+            foreach(var item in _itemBL.GetItemsByLocation(loc.LocationID))
+            {
+                Console.WriteLine($"Item ID: {item.ItemID}");
+                Console.WriteLine(item.Product.ToString());
+                Console.WriteLine(item.ToString());
+            }
+            Console.WriteLine("Select Item ID to replenish inventory:");
+            int choice = int.Parse(Console.ReadLine());
+            Item item2BUpdated = _itemBL.GetItemByID(choice);
+            if(item2BUpdated == null)
+            {
+                Console.WriteLine("Error - did not select a valid ItemID");
+            }
+            else
+            {
 
-         public void BackToMainMenu()
+            }
+            Console.WriteLine();
+        }
+        public void BackToMainMenu()
         {
             Menu menu = new Menu(_customerBL, _locationBL, _productBL, _itemBL, _orderBL, _productOrderBL);
             menu.Start();
