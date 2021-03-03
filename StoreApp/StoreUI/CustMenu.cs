@@ -67,8 +67,44 @@ namespace StoreUI
             string fName = Console.ReadLine();
             Console.WriteLine("Enter customer last name: ");
             string lName = Console.ReadLine();
-            Console.WriteLine("Enter customer phone number: ");
-            string phoneNumber = Console.ReadLine();
+            bool correctPhoneNumberFormat = false;
+            string phoneNumber = "";
+            do
+            {
+                Console.WriteLine("Enter customer phone number: ");
+                phoneNumber = Console.ReadLine();
+                if(phoneNumber.Length != 12)
+                {
+                    Console.WriteLine("Error - phone number must be formatted xxx-xxx-xxxx");
+                }
+                else if(phoneNumber[3] != '-' && phoneNumber[7] != '-')
+                {
+                    Console.WriteLine("Error - phone number must be formatted xxx-xxx-xxxx");
+                }
+                else
+                {
+                    bool allNums = true;
+                    for(int i = 0; i < 10; i++)
+                    {
+                        if(i == 3 || i == 7)
+                        {
+                            continue;
+                        }
+                        if(char.IsDigit(phoneNumber[i]) == false)
+                        {
+                            allNums = false;
+                        }
+                    }
+                    if(allNums)
+                    {
+                        correctPhoneNumberFormat = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error - one of the entrys for the phone number is not a digit");
+                    }
+                }
+            }while(!correctPhoneNumberFormat);
             Customer newCustomer = new Customer(fName, lName, phoneNumber);
             _customerBL.AddCustomer(newCustomer); //BL add customer
 
