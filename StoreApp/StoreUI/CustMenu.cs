@@ -58,6 +58,9 @@ namespace StoreUI
                     BackToMainMenu();
                     menuRun = false;
                     break;
+                default:
+                    Console.WriteLine("Incorrect option, please try again");
+                    break;
             }
             } while(menuRun);
         }
@@ -290,6 +293,9 @@ namespace StoreUI
                         _productBL.ProductsByOrder(item.OrderID);
                     }
                     break;
+                default:
+                        Console.WriteLine("Incorrect option, please try again");
+                        break;
             }
             /*foreach(var item in _orderBL.GetCustomerOrders(customer.CustID))
             {

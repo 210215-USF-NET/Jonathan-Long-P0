@@ -49,6 +49,9 @@ namespace StoreUI
                 case "2":
                     BackToMainMenu();
                     break;
+                default:
+                    Console.WriteLine("Incorrect option, please try again");
+                    break;
             }
             } while(menuRun);
         }
@@ -94,6 +97,9 @@ namespace StoreUI
                         _productBL.ProductsByOrder(item.OrderID);
                     }
                     break;
+                default:
+                        Console.WriteLine("Incorrect option, please try again");
+                        break;
             }
         }
         public void UpdateItem()
