@@ -2,6 +2,7 @@ using System;
 using StoreModels;
 using StoreBL;
 using System.Collections.Generic;
+using Serilog;
 namespace StoreUI
 {
     public class ManagerMenu : IMenu
@@ -61,9 +62,20 @@ namespace StoreUI
             {
                 Console.WriteLine(item.ToString());
             }
-            Console.WriteLine("Enter store code to view inventory history:");
-            int option = int.Parse(Console.ReadLine());
-            Location loc = _locationBL.GetSpecificLocation(option);
+            Location loc = null;
+            bool foundLoc = false;
+            int option;
+            do{
+                Console.WriteLine("Enter store code to view inventory history:");
+                option = int.Parse(Console.ReadLine());
+                loc = _locationBL.GetSpecificLocation(option);
+                if(loc == null)
+                {
+                    Console.WriteLine("Invalid location id, please search again");
+                }else{
+                    foundLoc = true;
+                }
+            }while(!foundLoc);
             Console.WriteLine("Select order history format:");
             Console.WriteLine("\t[1] - Date(Ascending)\n\t[2] - Date(Descending)\n\t[3] - Total(Highest)\n\t[4] - Total(Lowest)");
             option = int.Parse(Console.ReadLine());
@@ -108,30 +120,59 @@ namespace StoreUI
             {
                 Console.WriteLine(item.ToString());
             }
-            Console.WriteLine("Enter location code for store to update inventory:");
-            int option = int.Parse(Console.ReadLine());
-            Location loc = _locationBL.GetSpecificLocation(option);
+            bool foundLoc = false;
+            Location loc = null;
+            int option;
+            do{
+                try
+                {
+                    Console.WriteLine("Enter location code for store to update inventory:");
+                    option = int.Parse(Console.ReadLine());
+                    loc = _locationBL.GetSpecificLocation(option);
+                    if(loc == null)
+                    {
+                        Console.WriteLine("Invalid location id, please search again");
+                    }else{
+                        foundLoc = true;
+                    }
+                }
+                catch(FormatException)
+                {
+                    Console.WriteLine("Invalid store code, make sure to enter a number");
+                    Log.Error("Incorrect input for store id");
+                }
+            }while(!foundLoc);
+            
             foreach(var item in _itemBL.GetItemsByLocation(loc.LocationID))
             {
                 Console.WriteLine($"Item ID: {item.ItemID}");
                 Console.WriteLine(item.Product.ToString());
                 Console.WriteLine(item.ToString());
             }
-            Console.WriteLine("Select Item ID to replenish inventory:");
-            int choice = int.Parse(Console.ReadLine());
-            Item item2BUpdated = _itemBL.GetItemByID(choice);
-            if(item2BUpdated == null)
+            try
             {
-                Console.WriteLine("Error - did not select a valid ItemID");
+                Console.WriteLine("Select Item ID to replenish inventory:");
+                int choice = int.Parse(Console.ReadLine());
+                Item item2BUpdated = _itemBL.GetItemByID(choice);
+                if(item2BUpdated == null)
+                {
+                    Console.WriteLine("Error - did not select a valid ItemID");
+                }
+                else
+                {
+                    Console.WriteLine($"Enter new quantity for {item2BUpdated.Product.ProductName} at {item2BUpdated.Location.LocationName}:");
+                    int q = int.Parse(Console.ReadLine());
+                    _itemBL.UpdateItem(item2BUpdated, q);
+                    Console.WriteLine("Successfully updated!");
+                    Log.Information($"Inventory {item2BUpdated.Product.ProductName} updated to {q}");
+                }
+                Console.WriteLine();
             }
-            else
+            catch(FormatException)
             {
-                Console.WriteLine($"Enter new quantity for {item2BUpdated.Product.ProductName} at {item2BUpdated.Location.LocationName}:");
-                int q = int.Parse(Console.ReadLine());
-                _itemBL.UpdateItem(item2BUpdated, q);
-                Console.WriteLine("Successfully updated!");
+                Console.WriteLine("Error - incorrect entry for item id");
+                Log.Error("Incorrect entry for when selecting item id for updating inventory");
             }
-            Console.WriteLine();
         }
         public void BackToMainMenu()
         {

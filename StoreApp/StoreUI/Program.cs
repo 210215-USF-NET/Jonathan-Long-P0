@@ -6,12 +6,19 @@ using StoreDL.Entities;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
+using Serilog.Formatting.Compact;
 namespace StoreUI
 {
     class Program
     {
         static void Main(string[] args)
         {
+            //Set up logger
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Verbose()
+            .WriteTo.File(new CompactJsonFormatter(),"../Logs.json").CreateLogger();
+            
             //Setting up DB connection
             var configuration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())

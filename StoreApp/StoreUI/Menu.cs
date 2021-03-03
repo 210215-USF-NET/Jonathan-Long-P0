@@ -1,6 +1,7 @@
 using System;
 using StoreModels;
 using StoreBL;
+using Serilog;
 namespace StoreUI
 {
     /// <summary>
@@ -47,6 +48,7 @@ namespace StoreUI
                     break;
                 case "1":
                     ManagerMenu managerMenu = new ManagerMenu(_customerBL, _locationBL, _productBL, _itemBL, _orderBL, _productOrderBL);
+                    Log.Information("Manager Menu Accessed");
                     menuRun = false;
                     managerMenu.Start();
                     break;
